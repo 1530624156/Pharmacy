@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style type="text/css">
+			body{
+               background: url(/img/4.jpg) no-repeat;
+				background-size: 100%;
+            }
+
+		</style>
+	</head>
+	<body>
+		<div class="bg">
+			<div class="wel">药店管理系统</div>
+	        <div class="user">
+	       	    <div id="yonghu" style="">工&nbsp;&nbsp;&nbsp;号</div>
+	       	    <input  type="text" name="username"  value="" placeholder="请输入工号" class="username"/>
+	        </div>
+	        <div class="password" >
+	        	<div id="yonghu" >密&nbsp;&nbsp;&nbsp;码</div>
+	       	    <input class="passwords" type="password" name="password" value="" placeholder="请输入密码" />
+	        </div>
+	        <div class="rem" >
+
+	        </div>
+	        <div class="fg" >
+	       	    <div style="font-size: 11px;margin-top: 11px;">
+	       	    	<a style="font-size: 11px;" href="./adminlogin.html">管理员登陆</a>
+	       	    </div>
+	        </div>
+	        <input class="btn login_btn" type="button" name="登录" value="登录" />
+		</div>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.6.0.js" type="text/javascript" charset="utf-8"></script>
+
+
+		<script type="text/javascript">
+			//点击登录按钮提交
+			$('.login_btn').on('click',function(){
+				var username = $(".username").val();
+				var password = $(".passwords").val();
+				$.ajax({
+					type:'get',
+					url:'worker',
+					data:{
+						method:'workerLogin',
+						wid:username,
+						wpassword:password
+					},
+					success:function(result){
+						alert(result);
+						console.log(result);
+						if (result === '登录成功'){
+							window.location="main.jsp";
+						}
+					}
+				});
+				return false;
+			})
+		</script>
+	</body>
+</html>

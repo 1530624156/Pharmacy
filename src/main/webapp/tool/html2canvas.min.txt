@@ -1,0 +1,4 @@
+html2canvas($('div.headWrap.show')[0]).then((canvas)=>{
+    console.log(canvas);
+    console.log(canvas.toDataURL('image/png'));
+   });

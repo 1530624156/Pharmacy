@@ -1,0 +1,103 @@
+<html>
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+    <script src="tool/My.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>编辑类别</legend>
+</fieldset>
+
+
+<form class="layui-form" action="">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">ID：</label>
+        <div class="layui-input-block">
+            <input disabled type="text" name="tid" lay-verify="required"
+                   autocomplete="off" class="layui-input tid">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">类名：</label>
+        <div class="layui-input-block">
+            <input type="text" name="tname" lay-verify="required" lay-reqtext="类名是必填项，岂能为空？"
+                    autocomplete="off" class="layui-input tname">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">说明：</label>
+        <div class="layui-input-block">
+            <input type="text" name="note" lay-verify="required" lay-reqtext="说明必填项，岂能为空？"
+                    autocomplete="off" class="layui-input note">
+        </div>
+    </div>
+
+
+    <div align="center">
+        <button class="layui-btn layui-btn-normal updatetype_btn">确认修改</button>
+        <button style="margin-left: 20px" class="layui-btn layui-btn-normal close_btn">关闭</button>
+    </div>
+
+</form>
+
+<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-3.6.0.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script type="text/javascript">
+
+    //点击关闭按钮关闭弹出层
+    $(".close_btn").on('click', function () {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    })
+
+    $(() => {
+        getSession('tid',(tid) => {
+            console.log(tid);
+            $.post('type?method=getTypeByTid&tid=' + tid,function (data){
+                data = JSON.parse(data);
+                console.log(data);
+                $('input[name=tid]').val(tid);
+                $('input[name=tname]').val(data.tname);
+                $('input[name=note]').val(data.note);
+            })
+
+            //点击修改按钮提交
+            $('.updatetype_btn').on('click', function () {
+                var tid = $(".tid").val()
+                var tname = $(".tname").val();
+                var note = $(".note").val();
+                $.ajax({
+                    type: 'post',
+                    url: 'type',
+                    data: {
+                        method: "updateType",
+                        tid: tid,
+                        tname: tname,
+                        note: note
+                    },
+                    success: function (result) {
+                        if (result === 'true') {
+                            alert("修改成功");
+                        } else {
+                            alert("修改失败");
+                        }
+                        console.log(result);
+                        //执行完成后关闭弹窗并且刷新父窗口
+                        window.parent.location.reload();
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                    }
+                });
+                return false;
+            })
+        })
+    })
+</script>
+</body>
+</html>

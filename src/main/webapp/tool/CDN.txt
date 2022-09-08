@@ -1,0 +1,11 @@
+bootstrap:
+<link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+
+jquery:
+<script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+
+animate(动画):
+<link rel="stylesheet" href="https://www.jq22.com/jquery/animate-3.1.0.min.css">
+
+vue：
+https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+    <script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-3.6.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="tool/My.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+
+    <table id="record" lay-filter="test"></table>
+
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#record'
+                ,height: 670
+                ,url: 'inventory?method=getAllRecord' //数据接口
+                ,page: false //关闭分页
+                ,cols: [[ //表头
+                    {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                    ,{field: 'mname', title: '药名', width:200}
+                    ,{field: 'addnum', title: '出入库数量', width:150, sort: true}
+                    ,{field: 'type', title: '类型', width:100}
+                    ,{field: 'time', title: '出入库时间', width: 200}
+                    ,{field: 'note', title: '备注', width: 750}
+                ]]
+            });
+
+        });
+    </script>
+
+</body>
+</html>

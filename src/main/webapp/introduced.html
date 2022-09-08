@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>软帝药品管理系统-介绍</title>
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+</head>
+<body>
+
+<ul class="layui-nav layui-bg-green">
+    <li class="layui-nav-item"><p><font color="#f0f8ff" face="幼圆">软帝药店管理系统-介绍</font></p></li>
+</ul>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-panel">
+            <div style="padding: 30px;">
+                <p><font size="8" face="幼圆" color="green"> 软帝药店管理系统-系统介绍 </font></p>
+
+                <div style="margin-top: 20px">
+                    <h3>系统功能：</h3>
+                    <ol>
+                        <li>客户管理：记录每个客户的个人信息</li>
+                        <li>药品管理：按照药品分类进行药品的库存数量，信息管理</li>
+                        <li>订单管理：记录药店的每一单数据</li>
+                        <li>店员管理：管理员可以增删改查店员，进行店员信息的管理</li>
+
+                    </ol>
+                </div>
+
+                <div style="margin-top: 20px">
+                    <h3>技术选型：</h3>
+                    <ol>
+                        <li>开发语言：Java/HTML/CSS/JavaScript/Jsp</li>
+                        <li>前端框架：Layui</li>
+                        <li>数据库： Mysql</li>
+                        <li>数据库连接池：Druid。</li>
+                        <li>工具类：Fastjson,log4j,poi,MyJdbc</li>
+                        <li>更多……</li>
+                    </ol>
+                </div>
+
+                <div style="margin-top: 20px; width: 30%;" >
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>捐赠</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="alert alert-warning">
+                                请作者喝杯咖啡(点击放大)
+                            </div>
+                            <p id="pay-qrcode" >
+                                <a href="javascript:;"><img src="/img/pay.png" width="100%" alt="请使用手机支付宝或者微信扫码支付">
+                                </a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <script src="js/jquery-3.6.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+    $('#pay-qrcode').click(function(){
+        var html=$(this).html();
+        parent.layer.open({
+            title: false,
+            type: 1,
+            closeBtn:false,
+            shadeClose:true,
+            area: ['600px', '360px'],
+            content: html
+        });
+    });
+
+</script>
+</body>
+</html>
